@@ -1,6 +1,3 @@
-'''c++
-
-
 #define pul 7
 #define dir 8
 void setup() {
