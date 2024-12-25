@@ -41,23 +41,25 @@
 درايورهای مخصوص كنترل ميشود تا دقت بالايي در ترسيم فراهم شود
 
 
-![](C:\Users\User\Desktop\Plotter\Picture3.png)
+[![2eq3CZl.png](https://iili.io/2eq3CZl.png)](https://freeimage.host/)
+[![2eq3Bj4.jpg](https://iili.io/2eq3Bj4.jpg)](https://freeimage.host/)
+[![2eq3A8u.md.png](https://iili.io/2eq3A8u.md.png)](https://freeimage.host/i/2eq3A8u)
 
-<img src="C:\Users\User\Desktop\Plotter\Picture5.png"  style="position: relative; top: 0px;" width="200" height="200" />
 
 * **میکروکنترلر** :
   كنترل اصلي ربات توسط يك ميكروكنترلر مانند Arduino انجام ميشود. اين كنترلر مسئول دريافت دستورات از نرمافزار
 طراحي و تبديل آنها به حركت مكانيكي است.
 
 
-<img src="C:\Users\User\Desktop\Plotter\Picture6.png"  style="display: block; margin: 0 auto;" />
+
 
 * **درایور ها** :
 براي كنترل دقيق و بهينه استپر موتورها، از درايورهايي استفاده شده است كه سيگنالهاي لازم براي حركت موتور را توليد 
 ميكنند. ما در اين پروژه از TB6600 استفاده كرديم .
 
 
-<img src="C:\Users\User\Desktop\Plotter\Picture9.png"  style="display: block; margin: 0 auto; " width="200" height="200" />
+[![2eq3uae.png](https://iili.io/2eq3uae.png)](https://freeimage.host/)
+[![2eq3aZQ.md.jpg](https://iili.io/2eq3aZQ.md.jpg)](https://freeimage.host/i/2eq3aZQ)
 
 
 
@@ -65,13 +67,14 @@
 تمامي قطعات الكترونيكي و موتورهاي ربات از يك منبع تغذيه پايدار برق دريافت ميكنند كه جريان و ولتاژ مناسب را تأمين 
 ميكند .
 
-<img src="C:\Users\User\Desktop\Plotter\Picture10.png"  style="display: block; margin: 0 auto;" />
+ [![2eq3Ryb.png](https://iili.io/2eq3Ryb.png)](https://freeimage.host/)
 
 * **حافظه جانبی** :
 در پروژه ها تعداد نقاط بسيار بالاتر از ظرفيت آردوينو است. در اين شرايط نياز داريم ديتا را از كامپيوتر به حافظه جانبي منتقل كرده 
 و مختصات نقاط را به همراه كد مربوطه از روي آن بخوانيم
-<img src="C:\Users\User\Desktop\Plotter\Picture11.png"  style="display: block; margin: 0 auto;" />
-***
+
+<img src="https://ae04.alicdn.com/kf/S8218c784b2b2498d9b457b153b37cdaas.jpg_640x640q90.jpg" width="200" height="200" alt="2eq3Ywx.png" border="0" ></a>
+
 
 ### 3.سیستم نرم افزاری :
 * **برنامه نویسی و کنترل** :
@@ -109,18 +112,18 @@ void loop() {
 بخش نرم‌افزاری ربات به گونه‌ای طراحی شده است که بتواند با ابزارهای طراحی پیشرفته مانند Rhino و Grasshopper ارتباط برقرار کند. این قابلیت امکان تبدیل طراحی‌های دیجیتال به دستورات حرکتی را فراهم می‌آورد.
 </div>
 
-![](C:\Users\User\Desktop\Plotter\Picture1.png)
+[![2eq3xGS.md.png](https://iili.io/2eq3xGS.md.png)](https://freeimage.host/i/2eq3xGS)
 
 <div dir="rtl" style="text-align: right;">
     
 * **سیستم مختصات** :
 ربات از یک سیستم مختصات دوبعدی برای تعیین موقعیت بازوها استفاده می‌کند. این سیستم باعث می‌شود که موقعیت دقیق قلم روی کاغذ مشخص شود
 
-![](C:\Users\User\Desktop\Plotter\Picture2.png)
+[![2eq3on2.png](https://iili.io/2eq3on2.png)](https://freeimage.host/)
 
 
 ### 4.نقش هر جزء در عملکرد ربات :
-* استپر موتورها و سیستم انتقال حرکت با هماهنگی یکدیگر، **بازوهای ربات را حرکت می‌دهند و امکان ترسیم خطوط و اشکال را فراهم می‌کنند.
+* استپر موتورها و سیستم انتقال حرکت با هماهنگی یکدیگر، بازوهای ربات را حرکت می‌دهند و امکان ترسیم خطوط و اشکال را فراهم می‌کنند.
 * میکروکنترلر و نرم‌افزار به عنوان **مغز ربات** عمل کرده و دستورات طراحی را به حرکت تبدیل می‌کنند.
 * نگهدارنده قلم و طراحی مکانیکی، **ثبات و دقت** ترسیم را تضمین می‌کنند.
 
@@ -128,9 +131,7 @@ void loop() {
 
 
 
-
-
-
+[![2eq3sol.gif](https://iili.io/2eq3sol.gif)](https://freeimage.host/)
 </div>
 
 
