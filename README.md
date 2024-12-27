@@ -18,7 +18,7 @@ The robot frame is made of **lightweight** and **durable materials** to ensure b
  The articulated arms move with the help of flexible belts and a pulley system. This part provides the possibility of accurately drawing lines and various shapes .
 
 * **Pen holder** :
-The pen holder is designed in a way that can hold various writing tools (such as pens, pencils, or markers) stable and be it can  easily get replaced .
+The pen holder is designed in a way that can hold various writing tools (such as pens, pencils, or markers) stable and it can easily get replaced .
 
 
 ***
