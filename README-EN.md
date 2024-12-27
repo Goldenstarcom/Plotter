@@ -1,46 +1,61 @@
+<div dir="rtl" style="text-align: right;">
+
+## مقدمه :
+رباتهای طراحي نمادي از تركيب هنر و فناوری هستند؛ ابزاري كه به كمك آنها ميتوان نقشه ها و طراحيهاي پيچيده را بهصورت دقيق 
+و زيبا روي كاغذ پياده كرد. در اين پروژه، با الهام از ساختار رباتهاي سري **Makelangelo** ، يك ربات طراحي دوبعدي توسعه داده شده 
+كه با بهرهگيري از موتورها، نرم افزارهاي طراحي پيشرفته همچون **Rhino** و **Grasshopper**، و كدنويسي اختصاصي، امكان توليد 
+طرحهاي خلاقانه را فراهم ميكند  
+
+هدف اين مستند، ارائه يك راهنماي جامع و گام به گام از فرآيند طراحي، ساخت ، و راه اندازي ربات است. كه علاوه بر تشريح اجزاي
+سختافزاري و نرم افزاري، نحوه تعامل ربات با طراحي هاي ديجيتال را نيز بهصورت دقيق توضيح ميدهد. به كمك اين راهنما، نه تنها 
+ميتوانيد با مكانيزم عملكردي ربات آشنا شويد، بلكه امكان بازآفريني يا **بهبود** طراحي آن براي پروژههاي مشابه نيز فراهم ميشود
+
+ربات طراحي اين پروژه با تأكيد بر دقت، قابليت شخصيسازي، و ادغام با ابزارهاي پيشرفته طراحي ديجيتال ساخته شده است و ميتواند 
+در حوزههاي آموزشي، هنري، و صنعتي كاربردهاي گستردهاي داشته باشد.
 
 
-## Intro :
-Introduction Robots of the future are a symbol of the combination of art and technology, tools that can accurately and beautifully map and create designs. In this project, inspired by the structure of serial robots like **Makelangelo**, a two-dimensional design robot has been developed using advanced design software such as **Rhino** and **Grasshopper**, as well as custom coding, to provide the ability to create sophisticated designs. The goal of this documentary is to provide a comprehensive and step-by-step guide to the design, construction, and operation of the robot. It not only explains the hardware and software components but also details how the robot interacts with digital designs. With the help of this guide, not only can you understand the operational mechanism of the robot, but also the possibility of redesigning or improving the design for similar projects is provided. This design robot emphasizes precision, personalization, and integration with advanced digital design tools, and can have a wide range of applications in educational, artistic, and industrial fields.
+## اجزای ربات طراحی :
+ربات طراحی این پروژه از چندین بخش اصلی تشکیل شده است که هر کدام نقشی کلیدی در عملکرد کلی آن ایفا میکنند . این اجزا شمال **سخت افزار های مکانیکی** ، **قطعات مکانیکی** و **سیستم های نرم افزاری** باست . در ادامه ، هر یک از این بخش ها و وظایف آن ها به تفصیل شرح داده شده است .
 
 
-##  Components of the Design Robot  :
-   The design robot of this project consists several main components, each one plays a key role in its overall performance. These components include mechanical hardware, electronic components, and software systems. Each of these components and their functions are detailed below :   
+### 1. بخش های مکانیکی :
 
-### 1 . Mechanical Components  :
-
-* **Frame and Body** :
-The robot frame is made of **lightweight** and **durable materials** to ensure balance and stability during movement . also it can easily hold motors and other components in place .
+* **شاسی و بدنه** :
+  شاسي ربات از جنس مواد سبك و مقاوم ساخته شده است تا تعادل و پايداري را در حين حركت تضمين كند. طراحي شاسي 
+بهگونهاي است كه بتواند به راحتي موتورها و ديگر قطعات را در جاي خود نگه دارد.
 
 
 
-* **Arms and Motion transmission system** :
- The articulated arms move with the help of flexible belts and a pulley system. This part provides the possibility of accurately drawing lines and various shapes .
-
-* **Pen holder** :
-The pen holder is designed in a way that can hold various writing tools (such as pens, pencils, or markers) stable and be it can  easily get replaced .
+* **بازوها و سيستم انتقال حركت** :
+   بازوها و سيستم انتقال حركت:
+بازوهاي طراحي شده به كمك تسمه های انعطافپذير و سيستم پولی حركت ميكنند. اين بخش امكان ترسيم دقيق خطوط و 
+اشكال مختلف را فراهم می آورد
 
 
 ***
 
-### 2 . Electronic Components
+### 2. قطعات الکترونیکی :
 
-* **Stepper Motors** :
-  This project uses two stepper motors that allow precise and controlled movement of the arms. Each motor is controlled with special drivers to ensure accuracy in drawing . 
+* **موتور های استپر** : 
+  اين پروژه از دو موتور استپر استفاده ميكند كه حركت دقيق و كنترل شده بازوها را ممكن ميسازند. هر موتور به كمك 
+درايورهای مخصوص كنترل ميشود تا دقت بالايي در ترسيم فراهم شود
+
 
 [![2eq3CZl.png](https://iili.io/2eq3CZl.png)](https://freeimage.host/)
 [![2eq3Bj4.jpg](https://iili.io/2eq3Bj4.jpg)](https://freeimage.host/)
 [![2eq3A8u.md.png](https://iili.io/2eq3A8u.md.png)](https://freeimage.host/i/2eq3A8u)
 
 
-* **Microcontroller** :
-The main control of the robot is done by a microcontroller such as Arduino. This controller is responsible for receiving commands from the design software and converting them into mechanical movement
+* **میکروکنترلر** :
+  كنترل اصلي ربات توسط يك ميكروكنترلر مانند Arduino انجام ميشود. اين كنترلر مسئول دريافت دستورات از نرمافزار
+طراحي و تبديل آنها به حركت مكانيكي است.
 
-![](https://store.arduino.cc/cdn/shop/files/A000066_03.front_643x483.jpg?v=1727098250)
 
 
-* **Drivers** :
-For precise and optimal control of stepper motors, drivers are used to generate signals necessary for motor movement. In this project, we used the **TB6600 driver**. 
+
+* **درایور ها** :
+براي كنترل دقيق و بهينه استپر موتورها، از درايورهايي استفاده شده است كه سيگنالهاي لازم براي حركت موتور را توليد 
+ميكنند. ما در اين پروژه از TB6600 استفاده كرديم .
 
 
 [![2eq3uae.png](https://iili.io/2eq3uae.png)](https://freeimage.host/)
@@ -48,22 +63,25 @@ For precise and optimal control of stepper motors, drivers are used to generate 
 
 
 
-* **Power supply** :
-Power supply: All electronic components and robot motors receive power from a stable power supply that provides suitable current and voltage
-
+* **منبع تغذیه** :
+تمامي قطعات الكترونيكي و موتورهاي ربات از يك منبع تغذيه پايدار برق دريافت ميكنند كه جريان و ولتاژ مناسب را تأمين 
+ميكند .
 
  [![2eq3Ryb.png](https://iili.io/2eq3Ryb.png)](https://freeimage.host/)
 
-* **External memory** :
-In projects with a much larger number of points than the capacity of Arduino, we need to transfer data from the computer to external memory and read the coordinates of the points along with the corresponding code from it
+* **حافظه جانبی** :
+در پروژه ها تعداد نقاط بسيار بالاتر از ظرفيت آردوينو است. در اين شرايط نياز داريم ديتا را از كامپيوتر به حافظه جانبي منتقل كرده 
+و مختصات نقاط را به همراه كد مربوطه از روي آن بخوانيم
 
 <img src="https://ae04.alicdn.com/kf/S8218c784b2b2498d9b457b153b37cdaas.jpg_640x640q90.jpg" width="200" height="200" alt="2eq3Ywx.png" border="0" ></a>
 
-*** 
 
-### 3 . Software System   :
-* **Programming and Control** :
-The robot control software is written in **C++** language and in the **Arduino IDE** environment. This program is responsible for sending precise signals to the drivers for the movement of stepper motors. We also use the **AccelStepper library** for controlling the stepper motors.  
+### 3.سیستم نرم افزاری :
+* **برنامه نویسی و کنترل** :
+ نرم افزار كنترل ربات با استفاده از زبان **++C** و در محيط  **Arduino IDE** نوشته شده است. اين برنامه وظيفه ارسال سيگنالهاي 
+دقيق به درايورها براي حركت استپر موتورها را بر عهده دارد. همچنين براي كنترل استپر موتورها از كتابخانه **AccelStepper**
+استفاده ميكنيم:
+</div>
 
 ```c++
 #include <AccelStepper.h>
@@ -88,25 +106,33 @@ void loop() {
   }
 }
 ```
+<div dir="rtl" style="text-align: right;">
 
+* **ادغام با Rhino و Grasshopper** :
+بخش نرم‌افزاری ربات به گونه‌ای طراحی شده است که بتواند با ابزارهای طراحی پیشرفته مانند Rhino و Grasshopper ارتباط برقرار کند. این قابلیت امکان تبدیل طراحی‌های دیجیتال به دستورات حرکتی را فراهم می‌آورد.
+</div>
 
-* **Integration with Rhino and Grasshopper** :
-The robot software section is designed in a way that it can communicate with advanced design tools such as Rhino and Grasshopper. This capability enables the conversion of digital designs into motion commands .
+[![2eq3xGS.md.png](https://iili.io/2eq3xGS.md.png)](https://freeimage.host/i/2eq3xGS)
 
-    G-Code Algorithm for obtaining a list of coordinate points : 
-
-    [![2eq3xGS.md.png](https://iili.io/2eq3xGS.md.png)](https://freeimage.host/i/2eq3xGS)
-
-
+<div dir="rtl" style="text-align: right;">
     
-* **Coordinate System** :
-The robot uses a two-dimensional coordinate system to determine the position of its arms. This system allows for precise positioning of the pen on the paper
+* **سیستم مختصات** :
+ربات از یک سیستم مختصات دوبعدی برای تعیین موقعیت بازوها استفاده می‌کند. این سیستم باعث می‌شود که موقعیت دقیق قلم روی کاغذ مشخص شود
 
-    [![2eq3on2.png](https://iili.io/2eq3on2.png)](https://freeimage.host/)
-
-
+[![2eq3on2.png](https://iili.io/2eq3on2.png)](https://freeimage.host/)
 
 
+### 4.نقش هر جزء در عملکرد ربات :
+* استپر موتورها و سیستم انتقال حرکت با هماهنگی یکدیگر، بازوهای ربات را حرکت می‌دهند و امکان ترسیم خطوط و اشکال را فراهم می‌کنند.
+* میکروکنترلر و نرم‌افزار به عنوان **مغز ربات** عمل کرده و دستورات طراحی را به حرکت تبدیل می‌کنند.
+* نگهدارنده قلم و طراحی مکانیکی، **ثبات و دقت** ترسیم را تضمین می‌کنند.
+
+
+
+
+
+[![2eq3sol.gif](https://iili.io/2eq3sol.gif)](https://freeimage.host/)
+</div>
 
 
 
