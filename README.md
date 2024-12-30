@@ -49,7 +49,7 @@ For precise and optimal control of stepper motors, drivers are used to generate 
 
 
 * **Power supply** :
-Power supply: All electronic components and robot motors receive power from a stable power supply that provides suitable current and voltage
+ All electronic components and robot motors receive power from a stable power supply that provides suitable current and voltage
 
 
  [![2eq3Ryb.png](https://iili.io/2eq3Ryb.png)](https://freeimage.host/)
