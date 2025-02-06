@@ -72,7 +72,7 @@ void reposition() {
   up();
   bool LR = true; //No Collision
   bool RR = true; //No Collision
-  while (LR || RR) { //Continue until both left and right are
+  while (LR || RR) { //Continue until both left and right are in position
     LR &= digitalRead(LES); //If it hits the end stop, it Returns False
     RR &= digitalRead(RES);
     if (LR) LStepper.runSpeed();
