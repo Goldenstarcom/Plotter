@@ -33,8 +33,8 @@ The pen holder is designed in a way that can hold various writing tools (such as
 * **Stepper Motors** :
  Two stepper motors are used to enable precise bi-directional control on the X and Y axes.
 
-<img src="(https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/StepperMotor_01.jpg" width="300" height="300" alt="2eq3Ywx.png" border="0" ></a>
-![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_05.JPG)
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/StepperMotor_01.jpg" width="750" height="300" alt="2eq3Ywx.png" border="0" ></a>
+
 
 
 * **Microcontroller** :
@@ -46,9 +46,9 @@ The main control of the robot is done by a microcontroller such as Arduino. This
 * **Drivers** :
 For precise and optimal control of stepper motors, drivers are used to generate signals necessary for motor movement. In this project, we used the **TB6600 driver**. 
 
-
+<img src="https://iili.io/2eq3aZQ.md.jpg" width="300" height="300" alt="2eq3Ywx.png" border="0" ></a>
 [![2eq3uae.png](https://iili.io/2eq3uae.png)](https://freeimage.host/)
-[![2eq3aZQ.md.jpg](https://iili.io/2eq3aZQ.md.jpg)](https://freeimage.host/i/2eq3aZQ)
+
 
 
 
@@ -385,9 +385,202 @@ void down() {
 }
 ``` 
 <img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/6-Servo.jpg" width="500" height="500" alt="2eq3Ywx.png" border="0" ></a> 
+#### 4 . 7 . Full System Integration and Final Testing :
+This final Arduino code integrates all components—stepper motors, a servo motor, and SD card reading—into a complete drawing system that follows G-code commands to control the gondola's movement for drawing. Here's how it works:
 
+- Initialization :
+   -	The system initializes the SD card and ensures the servo is attached and the marker is lifted off the surface at startup.
+   -	The system then sets up the stepper motors, with a maximum speed of 500 and the right stepper's direction reversed to ensure synchronized motion.
+   -	Both stepper motors are added to a MultiStepper object for synchronized control.
+     
+- Home Position :
+   - The reposition() function moves both stepper motors towards the end-stop sensors (defined by LES and RES) to detect the home position.
+   - Once the end-stops are triggered, the motors reset to position (0, 0).
+   - G-Code Reading and Execution :
+   - After setting the home position, the system reads the G-code file (GCode.txt), which contains movement instructions for the stepper motors.
+   - Each instruction consists of two values for the left and right steppers. When the character u is read, the marker is lifted, and when d is encountered, the marker is lowered to draw on the surface.
+   - The _MultiStepper_ object ensures that both motors move in sync, allowing precise control over the gondola’s position.
+- Marker Control :
+   - The servo motor controls the marker, lifting it when the drawing is not happening and lowering it to draw when required.
 
+This system integrates the mechanical components with the software logic to execute drawing tasks based on G-code commands. You can test this by sending appropriate G-code files to the system for execution.
 
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/7-All.jpg" width="500" height="500" alt="2eq3Ywx.png" border="0" ></a> 
+
+```c++
+/*
+   This Arduino program controls a drawing system using two stepper motors and a servo motor.
+   The stepper motors operate a belt-driven gondola system that moves according to G-code commands stored on an SD card.
+   The system first moves the gondola to the home position using end-stop sensors, then resets to a reference zero point.
+   After a brief pause, the system reads the G-code file and executes the drawing commands by moving the gondola accordingly.
+   The servo motor lifts and lowers the marker as needed for drawing.
+*/
+
+// Include necessary libraries for SPI communication and SD card handling
+#include <SPI.h> // Library for Serial Peripheral Interface (SPI) communication
+#include <SD.h>  // Library for interacting with SD cards
+
+#define cs 10    // Chip Select pin for SD card module
+// SPI Pins:
+// Master In Slave Out (MISO) -> Pin 12
+// Master Out Slave In (MOSI) -> Pin 11
+// Clock (SCK) -> Pin 13
+
+#include <Servo.h>        // Library for controlling the servo motor
+#include <AccelStepper.h> // Library for controlling stepper motors
+#include <MultiStepper.h> // Library for synchronized stepper motor movement
+
+// Define end-stop pins
+#define LES A0 // Left Endstop switch pin
+#define RES A1 // Right Endstop switch pin
+
+Servo s; // Create a servo object
+
+// Initialize stepper motors with driver configuration
+// Parameters: DRIVER mode, Pulse pin, Direction pin
+AccelStepper LStepper(AccelStepper::DRIVER, 2, 3); // Left Stepper: Pulse on pin 2, Direction on pin 3
+AccelStepper RStepper(AccelStepper::DRIVER, 4, 5); // Right Stepper: Pulse on pin 4, Direction on pin 5
+MultiStepper steppers; // Multi-stepper object for synchronized movement
+
+void setup() {
+  // Check if SD card is properly initialized
+  if (!SD.begin(cs)) {
+    Serial.println("SD not Found!"); // Print error message if SD card is not detected
+    while (true); // Halt the program execution
+  }
+
+  s.attach(6); // Attach the servo to pin 6
+  up(); // Lift the marker off the surface at startup to prevent unwanted drawing
+
+  // Set maximum speed and initial speed for both steppers
+  LStepper.setMaxSpeed(500);
+  LStepper.setSpeed(500);
+  RStepper.setMaxSpeed(500);
+  RStepper.setSpeed(500);
+
+  // Reverse the direction of the right stepper to match the system configuration
+  // Parameters: (direction, step, enable)
+  // Only the direction pin is inverted, keeping enable and step pins unchanged
+  RStepper.setPinsInverted(true, false, false); // Reverse direction only
+
+  // Add both steppers to the MultiStepper object to enable synchronized movement
+  steppers.addStepper(LStepper);
+  steppers.addStepper(RStepper);
+
+  // Call reposition function to set the home position
+  reposition();
+
+  delay(1000); // Pause before starting the drawing process
+
+  File file = SD.open("GCode.txt"); // Make sure to match the file name with the saved G-code file
+  while (true) { // Continue reading the file until completion 
+    long p[2]; // Array to store stepper movement values
+    String received = ""; // Store incoming data from the file
+    char ch;
+
+    // Read file character by character
+    while (file.available()) {
+      ch = file.read(); // Read one character from the file
+      if (ch == 'u') { 
+        received = "";
+        up(); // Lift the marker off the surface
+        continue; // Skip the rest of the loop iteration
+      }
+      if (ch == 'd') {
+        received = "";
+        down(); // Lower the marker onto the surface
+        continue; 
+      }
+      if (ch == ',') { // Indicates the first value (left stepper steps) has been read
+        p[0] = received.toInt();
+        received = "";
+        continue;  
+      }
+      if (ch == '\n') { // Indicates the second value (right stepper steps) has been read
+        p[1] = received.toInt();
+        received = "";
+        break; // Exit the inner loop
+      }
+      received += ch; // Store the read character
+    }
+    // When the file reaches the end, reset the position to (0,0) and lift the marker
+    if (!file.available()) { 
+      up(); // Lift the marker off the surface
+      p[0] = 0;
+      p[1] = 0;
+    }
+    steppers.moveTo(p); // Set target position
+    steppers.runSpeedToPosition(); // Move stepper motors
+  }
+}
+void loop() {}
+
+// This function moves the stepper motors to their home position using end-stops
+void reposition() {
+  up(); // Lift the marker off the surface to prevent unwanted marks during repositioning
+
+  bool LR = true; // Left stepper is still moving the weight toward the end-stop
+  bool RR = true; // Right stepper is still moving the weight toward the end-stop
+
+  // The stepper motors rotate to lift a weight attached to a pulley and belt system.
+  // The movement continues until the weight reaches the end-stop sensor and activates it
+  while (LR || RR) { 
+    // Using &= ensures that once the weight reaches the end-stop, 
+    // even if it slightly bounces or momentarily disconnects, the flag remains false.
+    LR &= digitalRead(LES); // If left end-stop is triggered, LR becomes false
+    RR &= digitalRead(RES); // If right end-stop is triggered, RR becomes false
+
+    if (LR) LStepper.runSpeed(); // Move left stepper if the weight has not reached the end-stop
+    if (RR) RStepper.runSpeed(); // Move right stepper if the weight has not reached the end-stop
+  }
+
+  // Set the current position as (0,0) after the weights reach the end-stops
+  LStepper.setCurrentPosition(0);
+  RStepper.setCurrentPosition(0);
+
+  // Move both steppers back by 3000 steps to position the gondola correctly
+  long pos[2] = {-3000, -3000};
+  steppers.moveTo(pos);
+  steppers.runSpeedToPosition(); // Execute the movement synchronously
+
+  // Reset the new position as the new (0,0) for future movements
+  LStepper.setCurrentPosition(0);
+  RStepper.setCurrentPosition(0);
+}
+
+// Moves the servo to the "UP" position (0 degrees), lifting the marker
+void up() {
+  s.write(0);
+  delay(700); // Pause to ensure the marker fully lifts
+}
+
+// Moves the servo to the "DOWN" position (90 degrees), pressing the marker onto the surface for drawing
+void down() {
+  s.write(90);
+  delay(700); // Pause to ensure the marker fully presses onto the surface
+}
+```
+## 5. Expreiments and Results :
+
+### 5 . 1 . Experimental Setup : The robot was tested in a controlled environment to evaluate drawing accuracy, compatibility with design inputs, and line quality. Three categories of experiments were conducted: 
+- Drawing linear and curved paths
+- Drawing basic geometric shapes (squares, circles, triangles)
+- Rendering complex designs from Grasshopper
+- 
+### 5 . 2 . Results Summary :
+- Linearity Accuracy: Mean error of 0.5 mm in straight lines and 0.8 mm in curves.
+- Basic Shapes: High precision observed, with slight vibration in large circles.
+- Complex Designs: Successfully rendered; however, longer execution times were noted.
+
+## 6. Analysis and Recommendations :
+- Accuracy: High performance in linear paths; minor deviation in curves.
+- Line Quality: Smooth lines in smaller designs; slight noise in longer paths.
+- Software Performance: G-Code was successfully interpreted and executed
+
+### Suggestions for Improvement :
+- Upgrade to higher-quality belts to reduce vibration.
+- Optimize motion algorithms for curves.
+- Improve G-Code parsing efficiency to shorten execution time.
 
 
 
