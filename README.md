@@ -1,40 +1,38 @@
 
+# Design and Implementation of a 2D Drawing Robot with G-Code Integration and Digital Design Tool 
+___
+## Abstract 
+In this research, a 2D drawing robot has been developed that is capable of rendering digital designs on a surface with high precision. Inspired by open-source projects such as Makelangelo, the robot utilizes lightweight mechanical components, precise stepper motors, and a control system based on Arduino. The software is designed to interface with Rhino and Grasshopper, receiving complex design inputs, converting them into motion codes (G-Code), and sending them to the robot. The goal of this project is to investigate the feasibility of building a simple yet precise robotic system for educational, artistic, and research purposes. Experimental evaluations were conducted to measure the robot’s drawing accuracy in both linear and curved paths. Results showed satisfactory performance in rendering both simple and complex shapes, though improvements in motion algorithms were identified, especially for curves.
 
-## Intro :
-Robots of the future are a symbol of the combination of art and technology, tools that can accurately and beautifully map and create designs. In this project, inspired by the structure of serial robots like **Makelangelo**, a two-dimensional design robot has been developed using advanced design software such as **Rhino** and **Grasshopper**, as well as custom coding, to provide the ability to create sophisticated designs. The goal of this documentary is to provide a comprehensive and step-by-step guide to the design, construction, and operation of the robot. It not only explains the hardware and software components but also details how the robot interacts with digital designs. With the help of this guide, not only can you understand the operational mechanism of the robot, but also the possibility of redesigning or improving the design for similar projects is provided. This design robot emphasizes precision, personalization, and integration with advanced digital design tools, and can have a wide range of applications in educational, artistic, and industrial fields.
 
-
-##  Components of the Design Robot  :
+## Keywords 
    The design robot of this project consists several main components, each one plays a key role in its overall performance. These components include mechanical hardware, electronic components, and software systems. Each of these components and their functions are detailed below :   
 
-### 1 . Mechanical Components  :
+## 1. introduction :
+The convergence of art and technology has given rise to intelligent tools such as drawing robots—systems capable of transferring digital designs onto any surface with precision. In recent years, open-source projects like Makelangelo have provided foundational concepts for building such systems. This project builds on these concepts using powerful design tools such as Rhino and Grasshopper to develop a 2D drawing robot. The robot receives design data as G-Code and controls the pen’s motion path to execute the design with high accuracy. The main objective of the project is to build a functional model for teaching electronics, motion control, and digital-to-physical design interaction.
+## 2. System Architecture :
 
-* **Frame and Body** :
+
+#### 2 . 1 . Mechanical Components
 The robot frame is made of **lightweight** and **durable materials** to ensure balance and stability during movement . also it can easily hold motors and other components in place .
 
 
 
-* **Arms and Motion transmission system** :
- The articulated arms move with the help of flexible belts and a pulley system. This part provides the possibility of accurately drawing lines and various shapes .
+* **Chasis and Body** : Constructed from lightweight and durable materials to ensure structural stability and support.
 
-* **Pen holder** :
-The pen holder is designed in a way that can hold various writing tools (such as pens, pencils, or markers) stable and it can easily get replaced .
+* **Arms and Motion Transmission** :
+Utilizes flexible belts and pulleys to transfer motion from motors to the pen holder.
 
+* **Pen Holder** : Designed for both stability and ease of tool replacement (pen, marker, pencil).
 
-***
+#### 2 . 2 . Electronic Components
 
-### 2 . Electronic Components
 
 * **Stepper Motors** :
   This project uses two stepper motors that allow precise and controlled movement of the arms. Each motor is controlled with special drivers to ensure accuracy in drawing . 
-
-[![2eq3CZl.png](https://iili.io/2eq3CZl.png)](https://freeimage.host/)
-[![2eq3Bj4.jpg](https://iili.io/2eq3Bj4.jpg)](https://freeimage.host/)
-[![2eq3A8u.md.png](https://iili.io/2eq3A8u.md.png)](https://freeimage.host/i/2eq3A8u)
-
-
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/02.png)
 * **Microcontroller** :
-The main control of the robot is done by a microcontroller such as Arduino. This controller is responsible for receiving commands from the design software and converting them into mechanical movement
+The main control of the robot is done by a microcontroller such as Arduino. This controller is responsible for receiving commands from the design software and converting them into mechanical movement.
 
 ![](https://store.arduino.cc/cdn/shop/files/A000066_03.front_643x483.jpg?v=1727098250)
 
@@ -49,7 +47,7 @@ For precise and optimal control of stepper motors, drivers are used to generate 
 
 
 * **Power supply** :
- All electronic components and robot motors receive power from a stable power supply that provides suitable current and voltage
+Power supply: All electronic components and robot motors receive power from a stable power supply that provides suitable current and voltage
 
 
  [![2eq3Ryb.png](https://iili.io/2eq3Ryb.png)](https://freeimage.host/)
