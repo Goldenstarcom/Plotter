@@ -12,25 +12,29 @@ Robots of the future are a symbol of the combination of art and technology, tool
 * **Frame and Body** :
 The robot frame is made of **lightweight** and **durable materials** to ensure balance and stability during movement . also it can easily hold motors and other components in place .
 
-
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/02.png)
 
 * **Arms and Motion transmission system** :
  The articulated arms move with the help of flexible belts and a pulley system. This part provides the possibility of accurately drawing lines and various shapes .
+
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_01.JPG" width="400" height="400" alt="2eq3Ywx.png" border="0" ></a>
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_02.JPG" width="400" height="400" alt="2eq3Ywx.png" border="0" ></a>
 
 * **Pen holder** :
 The pen holder is designed in a way that can hold various writing tools (such as pens, pencils, or markers) stable and it can easily get replaced .
 
 
-***
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_03.JPG" width="300" height="300" alt="2eq3Ywx.png" border="0" ></a>
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_04.JPG" width="300" height="300" alt="2eq3Ywx.png" border="0" ></a>
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_05.JPG" width="300" height="300" alt="2eq3Ywx.png" border="0" ></a>
 
 ### 2 . Electronic Components
 
 * **Stepper Motors** :
-  This project uses two stepper motors that allow precise and controlled movement of the arms. Each motor is controlled with special drivers to ensure accuracy in drawing . 
+ Two stepper motors are used to enable precise bi-directional control on the X and Y axes.
 
-[![2eq3CZl.png](https://iili.io/2eq3CZl.png)](https://freeimage.host/)
-[![2eq3Bj4.jpg](https://iili.io/2eq3Bj4.jpg)](https://freeimage.host/)
-[![2eq3A8u.md.png](https://iili.io/2eq3A8u.md.png)](https://freeimage.host/i/2eq3A8u)
+<img src="(https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/StepperMotor_01.jpg" width="300" height="300" alt="2eq3Ywx.png" border="0" ></a>
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/Diagram_05.JPG)
 
 
 * **Microcontroller** :
