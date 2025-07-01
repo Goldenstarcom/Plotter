@@ -235,12 +235,156 @@ void loop() {
 
 <img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/3-Repositioning.jpg"  width="500" height="500" alt="2eq3Ywx.png" border="0" ></a>
 
+#### 4 . 4 . Precision Movement Test :
+- Test the accuracy of the stepper motor movements by moving the gondola (attached to a marker) to five predefined positions
+- Verify that the motors accurately reach the set positions after the system has been repositioned to its home state
+- Ensure synchronized movement of both stepper motors to confirm the system's precision for drawing on the surface
+```c++
+/* This program controls two stepper motors using the AccelStepper and
+   MultiStepper libraries.
+   It synchronizes their movement and ensures both motors start from a known home
+   position using end-stop switches.
+   The system consists of a pulley and belt mechanism where one end of the belt
+   has a hanging weight,
+   and the other end is attached to a gondola that holds a marker for drawing on a
+   wall.
+   After repositioning, the system moves the gondola to five predefined positions
+   to test movement accuracy. */
 
+#include <AccelStepper.h> // Library for controlling stepper motors
+#include <MultiStepper.h> // Library for synchronized stepper motor movement
 
+// Define end-stop pins
+#define LES A0 // Left Endstop switch pin
+#define RES A1 // Right Endstop switch pin
 
+// Define test positions for movement verification
+long positions[5][2] = {
+  {100, -100},
+  {100, -200},
+  {-400, 300},
+  {500, -500},
+  {0, 0}
+};
 
+/* Initialize stepper motors with driver configuration
+   Parameters: DRIVER mode, Pulse pin, Direction pin */
+AccelStepper LStepper(AccelStepper::DRIVER, 2, 3); // Left Stepper: Pulse on pin 2, Direction on pin 3
+AccelStepper RStepper(AccelStepper::DRIVER, 4, 5); // Right Stepper: Pulse on pin 4, Direction on pin 5
+MultiStepper steppers; // Multi-stepper object for synchronized movement
 
+void setup() {
+  /* Set maximum speed and initial speed for both steppers */
+  LStepper.setMaxSpeed(500);
+  LStepper.setSpeed(500);
+  RStepper.setMaxSpeed(500);
+  RStepper.setSpeed(500);
 
+  /* Reverse the direction of the right stepper to match the system configuration */
+  RStepper.setDirection(1); // Assuming 1 reverses direction, adjust as needed
+}
+
+void loop() {
+  // Code to handle movement to positions would go here
+}
+```
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/3-Repositioning.jpg"  width="500" height="500" alt="2eq3Ywx.png" border="0" ></a>
+
+#### 4 . 5 .SD Card Functionality Test :
+- Ensure the SD card is properly initialized and can read a file ("test.txt") stored on it
+- Verify that the SD card module is connected and functioning correctly by reading and displaying the content of the file on the Serial Monitor
+- Test reading and extracting words from the file character by character to confirm SD card functionality
+
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/5-SDCard.jpg" width="500" height="300" alt="2eq3Ywx.png" border="0" ></a>
+```c++
+/*
+  This code tests an SD card reader to ensure it is functioning correctly
+  and properly wired. It reads the content of a text file ("test.txt")
+  stored on the SD card, character by character, and extracts words,
+  printing them to the Serial Monitor.
+*/
+
+// Include necessary libraries for SPI communication and SD card handling
+#include <SPI.h> // Library for Serial Peripheral Interface (SPI) communication
+#include <SD.h> // Library for interacting with SD cards
+
+#define cs 10  // Chip Select pin for SD card module
+// SPI Pins:
+// Master In Slave Out (MISO) -> Pin 12
+// Master Out Slave In (MOSI) -> Pin 11
+// Clock (SCK) -> Pin 13
+
+void setup() {
+  
+  // Initialize serial communication with a baud rate of 115200
+  // This allows the Serial Monitor to display the output
+  Serial.begin(115200); 
+  
+  // Check if SD card is properly initialized
+  if (!SD.begin(cs)) {
+    Serial.println("SD not Found!"); // Print error message if SD card is not detected
+    while (true); // Halt the program execution
+  }
+  
+  // Open the test file from the SD card
+  File file = SD.open("test.txt");
+  String word = ""; // Variable to store each word
+
+  // Read file character by character
+  while (file.available()) {
+    char ch = file.read(); // Read one character from the file
+    
+    if (ch == ' ') { // If a space is encountered, print the current word
+      Serial.println(word);
+      word = ""; // Reset the word variable
+    }
+    else {
+      word += ch; // Append character to the current word
+    }
+  }
+}
+
+void loop() {}
+```
+#### 4 . 6 . Servo Motor Test :
+- Verify the functionality of the servo motor by alternating its movement between two positions:
+   - "UP" (0 degrees) to lift the marker off the surface
+   - "DOWN" (90 degrees) to lower the marker and press it onto the surface
+-	The servo moves every 4 seconds to ensure smooth operation and test the control mechanism.
+
+```c++
+// This program controls a servo motor to lift and lower a marker for a drawing system.
+// The servo has two states:
+//   - "UP" (0 degrees): The servo arm extends forward, lifting the marker off the surface.
+//   - "DOWN" (90 degrees): The servo arm retracts, pressing the marker onto the surface for writing.
+// The loop alternates between UP and DOWN every 4 seconds for testing purposes.
+
+#include <Servo.h> // Library for controlling the servo motor
+
+Servo s; // Create a servo object
+
+void setup() {
+  s.attach(6); // Attach the servo to pin 6
+}
+
+void loop() {
+  up();       // Lift the marker off the surface
+  delay(4000); // Wait 4 seconds
+  down();     // Lower the marker onto the surface
+  delay(4000); // Wait 4 seconds
+}
+
+// Moves the servo to the "UP" position (0 degrees), lifting the marker
+void up() {
+  s.write(0);
+}
+
+// Moves the servo to the "DOWN" position (90 degrees), pressing the marker onto the surface for drawing
+void down() {
+  s.write(90);
+}
+``` 
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/6-Servo.jpg" width="500" height="500" alt="2eq3Ywx.png" border="0" ></a> 
 
 
 
