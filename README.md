@@ -29,8 +29,10 @@ Utilizes flexible belts and pulleys to transfer motion from motors to the pen ho
 
 
 * **Stepper Motors** :
-  This project uses two stepper motors that allow precise and controlled movement of the arms. Each motor is controlled with special drivers to ensure accuracy in drawing . 
+  This project uses two stepper motors that allow precise and controlled movement of the arms. Each motor is controlled with special drivers to ensure accuracy in drawing .
+  
 ![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/02.png)
+
 * **Microcontroller** :
 The main control of the robot is done by a microcontroller such as Arduino. This controller is responsible for receiving commands from the design software and converting them into mechanical movement.
 
