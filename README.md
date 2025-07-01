@@ -148,7 +148,7 @@ void loop() {
 - Test the functionality of each stepper motor
 - Rotate the motor 400 steps in one direction and then 400 steps back in the opposite direction
 - Ensure that the stepper motor and driver are working correctly by verifying the motor’s movement in both directions
-##### 4 . 2 . 1 . Independent Stepper Motor Testing :
+##### 4 . 2 . 1 . Left Stepper Motor Testing :
 ```c++
 /* This code tests the functionality of the left stepper motor.
    It rotates the motor 400 steps in one direction, then reverses
@@ -185,16 +185,55 @@ void loop() {
   // Empty loop
 }
 ```
-<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/2-Right_Stepper.jpg" width="350" height="425" alt="2eq3Ywx.png" border="0" ></a>
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/2-Left_Stepper.jpg" width="350" height="425" alt="2eq3Ywx.png" border="0" ></a>
 ##### 4 . 2 . 2 .Right Stepper Motor Testing :
+```c++
+/* This code tests the functionality of the left stepper motor.
+   It rotates the motor 400 steps in one direction, then reverses
+   the direction and rotates it another 400 steps back.
+   This helps verify that the stepper motor and driver are working correctly. */
 
+#define LeftPul 2 // Left Stepper Pulse pin
+#define LeftDir 3 // Left Stepper Direction pin
 
+void setup() {
+  pinMode(LeftPul, OUTPUT);
+  pinMode(LeftDir, OUTPUT);
 
+  digitalWrite(LeftDir, HIGH); /* Set direction to HIGH (clockwise or counterclockwise depending on driver) */
 
+  /* Rotate stepper motor 400 steps in the first direction
+     Drivers move one step on LOW to HIGH transition */
+  for (int i = 0; i < 400; i++) {
+    digitalWrite(LeftPul, HIGH); /* Send a pulse signal */
+    digitalWrite(LeftPul, LOW);  /* Turn off the pulse signal */
+    delay(2); /* Short delay to control speed */
+  }
 
+  digitalWrite(LeftDir, LOW); /* Change direction (reverse) */
 
+  /* Rotate stepper motor 400 steps in the opposite direction
+     Drivers move one step on LOW to HIGH transition */
+  for (int i = 0; i < 400; i++) {
+    digitalWrite(LeftPul, HIGH); /* Send a pulse signal */
+    digitalWrite(LeftPul, LOW);  /* Turn off the pulse signal */
+    delay(2); /* Short delay to control speed */
+  }
+}
 
+void loop() {
+  // Empty loop
+}
+```
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/2-Right_Stepper.jpg" width="350" height="425" alt="2eq3Ywx.png" border="0" ></a>
 
+#### 4 . 3 . Repositioning (Homing) and Synchronized Stepper Movement :
+- Control two stepper motors using the AccelStepper and MultiStepper libraries for synchronized movement
+- Use end-stop switches to ensure both motors start from a known home position
+- Move stepper motors to a home position by rotating them towards the end-stop switches, then set the current position as (0,0)
+- Reposition the gondola (attached to a marker) by moving both motors in sync, ensuring precise drawing on the surface
+
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/3-Repositioning.jpg"  width="500" height="500" alt="2eq3Ywx.png" border="0" ></a>
 
 
 
