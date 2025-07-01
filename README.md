@@ -16,9 +16,14 @@ The convergence of art and technology has given rise to intelligent tools such a
 #### 2 . 1 . Mechanical Components
 The robot frame is made of **lightweight** and **durable materials** to ensure balance and stability during movement . also it can easily hold motors and other components in place .
 
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/02.png)
 
 
 * **Chasis and Body** : Constructed from lightweight and durable materials to ensure structural stability and support.
+  
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/03.png)
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/IMG_3914.JPG)
+![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/IMG_3915.JPG)
 
 * **Arms and Motion Transmission** :
 Utilizes flexible belts and pulleys to transfer motion from motors to the pen holder.
@@ -31,7 +36,6 @@ Utilizes flexible belts and pulleys to transfer motion from motors to the pen ho
 * **Stepper Motors** :
   This project uses two stepper motors that allow precise and controlled movement of the arms. Each motor is controlled with special drivers to ensure accuracy in drawing .
   
-![](https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/02.png)
 
 * **Microcontroller** :
 The main control of the robot is done by a microcontroller such as Arduino. This controller is responsible for receiving commands from the design software and converting them into mechanical movement.
