@@ -107,3 +107,116 @@ The robot software section is designed in a way that it can communicate with adv
 The robot uses a two-dimensional coordinate system to determine the position of its arms. This system allows for precise positioning of the pen on the paper
 
     [![2eq3on2.png](https://iili.io/2eq3on2.png)](https://freeimage.host/)
+
+## 4. Step-by-Step Testing Guide :
+Before deploying the complete system, we follow a structured approach to ensure that each hardware component functions correctly. This helps prevent unnecessary issues and simplifies debugging. At each step, we carefully test the performance of each component to identify and resolve potential problems early. This step-by-step approach ensures that we verify the functionality of each part, making the debugging process and hardware verification much easier.
+
+The robot's software is developed using the Arduino IDE and C++, utilizing the AccelStepper and MultiStepper libraries for precise and synchronized stepper motor control. G-code instructions are parsed and executed in real time, and the robot interfaces with design software (Rhino and Grasshopper) via preprocessed files. Additional modules, such as an SD card reader and a servo motor for marker actuation, are integrated into the firmware. The following tests validate how each of these components work individually and as a complete system.
+The process is structured as follows:
+
+#### 4 . 1 . Endstop Testing :
+- Verify the proper functioning of the endstop switches
+- Use a simple test code to display sensor readings in the Serial Monitor
+- Ensure that pressing each endstop switch is correctly detected and stops the system's movement
+```c++
+/* This code is used to verify the proper functioning of the Endstops.
+When the Serial Monitor in Arduino IDE is enabled, the output will
+normally be "1 - 1".
+This is because the Endstops return 1 when they are not pressed.
+If either Endstop button is pressed, the corresponding output will
+ change to 0.*/
+
+#define LES A0 // Left Endstop switch pin
+#define RES A1 // Right Endstop switch pin
+
+void setup() {
+  pinMode(LES, INPUT);
+  pinMode(RES, INPUT);
+
+  // Initialize serial communication with a baud rate of 115200
+  Serial.begin(115200);
+}
+
+void loop() {
+  // Read the state of both Endstops and print the values to the Serial Monitor
+  Serial.print(digitalRead(LES));
+  Serial.print(" - ");
+  Serial.println(digitalRead(RES));
+```
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/1-End_Stops.jpg" width="500" height="315" alt="2eq3Ywx.png" border="0" ></a>
+#### 4 . 2 . Independent Stepper Motor Testing :
+- Test the functionality of each stepper motor
+- Rotate the motor 400 steps in one direction and then 400 steps back in the opposite direction
+- Ensure that the stepper motor and driver are working correctly by verifying the motor’s movement in both directions
+##### 4 . 2 . 1 . Independent Stepper Motor Testing :
+```c++
+/* This code tests the functionality of the left stepper motor.
+   It rotates the motor 400 steps in one direction, then reverses
+   the direction and rotates it another 400 steps back.
+   This helps verify that the stepper motor and driver are working correctly. */
+
+#define LeftPul 2 // Left Stepper Pulse pin
+#define LeftDir 3 // Left Stepper Direction pin
+
+void setup() {
+  pinMode(LeftPul, OUTPUT);
+  pinMode(LeftDir, OUTPUT);
+
+  digitalWrite(LeftDir, HIGH); /* Set direction to HIGH (clockwise or counterclockwise depending on driver) */
+
+  /* Rotate stepper motor 400 steps in the first direction */
+  for (int i = 0; i < 400; i++) {
+    digitalWrite(LeftPul, HIGH); /* Send a pulse signal */
+    digitalWrite(LeftPul, LOW);  /* Turn off the pulse signal */
+    delay(2); /* Short delay to control speed */
+  }
+
+  digitalWrite(LeftDir, LOW); /* Change direction (reverse) */
+
+  /* Rotate stepper motor 400 steps in the opposite direction */
+  for (int i = 0; i < 400; i++) {
+    digitalWrite(LeftPul, HIGH); /* Send a pulse signal */
+    digitalWrite(LeftPul, LOW);  /* Turn off the pulse signal */
+    delay(2); /* Short delay to control speed */
+  }
+}
+
+void loop() {
+  // Empty loop
+}
+```
+<img src="https://github.com/Goldenstarcom/Plotter/blob/Plotter_Photos/2-Right_Stepper.jpg" width="350" height="425" alt="2eq3Ywx.png" border="0" ></a>
+##### 4 . 2 . 2 .Right Stepper Motor Testing :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
